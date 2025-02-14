@@ -1,20 +1,20 @@
 import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
 import Cart from './components/Cart'
 import Nav from './components/Nav'
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 function App() {
   return (
-    <>
+    <div>
       <BrowserRouter>
-      <Nav />
+        <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   )
 }
 
