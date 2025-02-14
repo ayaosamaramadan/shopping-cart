@@ -1,10 +1,10 @@
-import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './components/Home'
-import Cart from './components/Cart'
-import Nav from './components/Nav'
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import Nopage from './components/Nopage'
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Cart from "./components/Cart";
+import Nav from "./components/Nav";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import Nopage from "./components/Nopage";
 function App() {
   return (
     <div>
@@ -17,7 +17,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
