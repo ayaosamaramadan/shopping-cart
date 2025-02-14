@@ -1,11 +1,19 @@
-
 import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './components/Home'
+import Cart from './components/Cart'
+import Nav from './components/Nav'
 
 function App() {
-
   return (
     <>
-    <p className='text-red-500'>aya</p>
+      <BrowserRouter>
+      <Nav />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
