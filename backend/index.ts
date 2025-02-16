@@ -1,8 +1,13 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
+// import compression from 'compression';
 import { products } from './products';
 const app = express();
 
+dotenv.config();
+
+// app.use(compression());
 app.use(express.json());
 app.use(cors());
 
@@ -15,5 +20,3 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-console.log(`Attempting to start server on port ${PORT}`);
