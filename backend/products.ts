@@ -1,34 +1,34 @@
 const products = [
     {
         id: 1,
-        name: 'Product 1',
-        price: 100,
-        image:"https://res.cloudinary.com/dgjbaeyok/image/upload/v1739638280/reactshoping/nizcva5bs3gemmc1iznd.jpg"
+        name: 'Disney Princess: Royal Spring',
+        price: 35,
+        image: "https://res.cloudinary.com/dgjbaeyok/image/upload/v1739638280/reactshoping/nizcva5bs3gemmc1iznd.jpg"
     },
     {
         id: 2,
-        name: 'Product 2',
-        price: 200,
-        image:"https://res.cloudinary.com/dgjbaeyok/image/upload/v1739638280/reactshoping/iwlykztdygajl6pz411g.webp"
+        name: 'Disney Princess: Enchanted Tales',
+        price: 37,
+        image: "https://res.cloudinary.com/dgjbaeyok/image/upload/v1739638280/reactshoping/iwlykztdygajl6pz411g.webp"
     },
     {
         id: 3,
-        name: 'Product 3',
-        price: 300,
-        image:"https://res.cloudinary.com/dgjbaeyok/image/upload/v1739638279/reactshoping/zamor8beklbrfg6z4xrf.webp"
-    },
-    {
-        id: 3,
-        name: 'Product 3',
-        price: 300,
-        image:"https://res.cloudinary.com/dgjbaeyok/image/upload/v1739638279/reactshoping/ilyhkbtk8gdh8zcmnkgw.webp"
+        name: 'Disney Princess: Magical Adventures',
+        price: 39,
+        image: "https://res.cloudinary.com/dgjbaeyok/image/upload/v1739638279/reactshoping/zamor8beklbrfg6z4xrf.webp"
     },
     {
         id: 4,
-        name: 'Product 4',
-        price: 400,
-        image:"https://res.cloudinary.com/dgjbaeyok/image/upload/v1739638279/reactshoping/aegecbpo7ubef0almsz2.webp"
+        name: 'Disney Princess: Dream Castle',
+        price: 32,
+        image: "https://res.cloudinary.com/dgjbaeyok/image/upload/v1739638279/reactshoping/ilyhkbtk8gdh8zcmnkgw.webp"
     },
-    ];
+    {
+        id: 5,
+        name: 'Disney Princess: Fairytale Collection',
+        price: 37,
+        image: "https://res.cloudinary.com/dgjbaeyok/image/upload/v1739638279/reactshoping/aegecbpo7ubef0almsz2.webp"
+    },
+];
 
 export { products };

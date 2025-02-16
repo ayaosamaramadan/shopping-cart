@@ -11,17 +11,20 @@ interface Product {
 interface ProductState {
     items: Product[];
     status: "idle" |"loading" | "succeeded"| "failed";
+    error: string | null;
 }
 
 const initialState: ProductState = {
     items: [],
     status: "idle",
+    error: null,
 };
 
 export const fetchedata = createAsyncThunk<Product[]>(
     "product/fetchedata",
     async () => {
-        const response = await axios.get("http://localhost:4000/product"); return response.data;
+        const response = await axios.get("http://localhost:4000/product");
+        return response.data;
     }
 );
 
@@ -39,6 +42,7 @@ const productSlice = createSlice({
             })
             .addCase(fetchedata.rejected, (state) => {
                 state.status = "failed";
+                state.error = "failed to fetch data";
             });
     },
 });
