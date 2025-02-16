@@ -9,7 +9,8 @@ const Product = () => {
   const dispatch = useDispatch();
 
   const handleAddToCart = (product: ProductType) => {
-   dispatch(addtocart(product));
+    const cartItem = { ...product, quantity: 1 };
+    dispatch(addtocart(cartItem));
   };
 
   return (
