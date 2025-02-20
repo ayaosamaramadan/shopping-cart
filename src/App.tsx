@@ -17,7 +17,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart/>} />
           <Route path="*" element={<Nopage />} />
         </Routes>
       </BrowserRouter>
