@@ -1,8 +1,10 @@
 import { useFetchAllProductsQuery } from "../features/prodectapi";
 import Product from "./Product";
+// import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const { error, isLoading } = useFetchAllProductsQuery();
+ 
 
   return (
     <>

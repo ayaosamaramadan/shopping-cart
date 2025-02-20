@@ -23,7 +23,7 @@ interface CartItem {
   }
   
 const initialState:CartState ={
-    items: [],
+    items: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")!) : [],
     status: "idle",
     error: null,
 }
@@ -47,12 +47,15 @@ const cartSlice = createSlice({
             const newItem = { ...action.payload, quantity: 1 };
             // state.items.push({ ...action.payload, quantity: 1 });
             state.items.push(newItem);
-            toast.success("Item added to cart",{
-                position: "top-right",
-                // autoClose: 2000,
-            });
+            toast.success('Item added to cart', {
+                position: 'bottom-right',
+                autoClose: 2000,
+                theme: 'colore',
+              });
         }
-    }
+
+        localStorage.setItem("cart", JSON.stringify(state.items));
+    },
 }
 });
 

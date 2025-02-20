@@ -8,6 +8,7 @@ import Cart from "./components/Cart";
 import Nav from "./components/Nav";
 import Nopage from "./components/Nopage";
 
+
 function App() {
   return (
     <div>

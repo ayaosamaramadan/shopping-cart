@@ -2,15 +2,18 @@ import { addtocart } from "../features/cartSlice";
 import { useFetchAllProductsQuery } from "../features/prodectapi";
 import { useDispatch } from "react-redux";
 import { Product as ProductType } from "../types/product";
+import {useNavigate} from "react-router";
 
 
 const Product = () => {
   const { data } = useFetchAllProductsQuery();
   const dispatch = useDispatch();
+  const nav =useNavigate();
 
   const handleAddToCart = (product: ProductType) => {
     const cartItem = { ...product, quantity: 1 };
     dispatch(addtocart(cartItem));
+    nav("/cart");
   };
 
   return (
