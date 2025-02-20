@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../main";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { addtocart, removefromcart ,decrem} from "../features/cartSlice";
+import { addtocart, removefromcart ,decrem ,removeallincart} from "../features/cartSlice";
 
 type itemprop = {
   id: number;
@@ -36,6 +36,10 @@ function dec(cartitem:itemprop){
     dispatch(decrem(cartitem.id));
 }
 
+function handleclearall(){
+    dispatch(removeallincart());
+}
+
 
 
   return (
@@ -44,7 +48,7 @@ function dec(cartitem:itemprop){
         <h1 className="text-2xl font-bold text-center mt-20">Cart is empty</h1>
       ) : (
         <>
-          <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 mt-4">
+          <button onClick={()=>handleclearall()}  className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 mt-4">
             Clear All
           </button>
           <div className="overflow-x-auto mt-10 h-[50vh] border-gray-100 rounded-xl border-2">
