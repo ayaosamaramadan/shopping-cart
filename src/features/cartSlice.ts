@@ -1,5 +1,5 @@
 import {PayloadAction, createSlice } from "@reduxjs/toolkit";
-
+import {toast} from "react-toastify";
 interface CartItem {
     id: number;
     name: string;
@@ -38,10 +38,19 @@ const cartSlice = createSlice({
         const index = state.items.findIndex((item) => item.id === action.payload.id);
         if (index >= 0) {
             state.items[index].quantity++;
+            // toast.info("Item added to cart",{
+            //     position: "top-right",
+            //     // autoClose: 2000,
+            // });
+
         } else {
             const newItem = { ...action.payload, quantity: 1 };
             // state.items.push({ ...action.payload, quantity: 1 });
             state.items.push(newItem);
+            toast.success("Item added to cart",{
+                position: "top-right",
+                // autoClose: 2000,
+            });
         }
     }
 }

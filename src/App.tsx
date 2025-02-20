@@ -1,14 +1,18 @@
-import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './components/Home'
-import Cart from './components/Cart'
-import Nav from './components/Nav'
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import Nopage from './components/Nopage'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+import Home from "./components/Home";
+import Cart from "./components/Cart";
+import Nav from "./components/Nav";
+import Nopage from "./components/Nopage";
+
 function App() {
   return (
     <div>
       <BrowserRouter>
+        <ToastContainer />
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -17,7 +21,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
