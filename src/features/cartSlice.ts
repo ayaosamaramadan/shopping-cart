@@ -93,6 +93,11 @@ const cartSlice = createSlice({
     removeallincart(state){
         state.items = [];
         localStorage.removeItem("cart");
+        toast.success("All items removed from cart", {
+            position: "bottom-right",
+            autoClose: 2000,
+            theme: "colore",
+          });
       }
   },
  

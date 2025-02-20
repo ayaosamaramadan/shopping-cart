@@ -1,8 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../main";
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
-import { addtocart, removefromcart ,decrem ,removeallincart} from "../features/cartSlice";
+import {
+  addtocart,
+  removefromcart,
+  decrem,
+  removeallincart,
+} from "../features/cartSlice";
+import Total from "./Total";
 
 type itemprop = {
   id: number;
@@ -10,37 +15,36 @@ type itemprop = {
   price: number;
   image: string;
   quantity: number;
+
 };
+
+
 
 const Cart = () => {
   const items = useSelector((state: RootState) => state.cart.items);
   // const items = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")!) : [];
   // console.log(items);
- const navigate = useNavigate();
- const dispatch = useDispatch();
-  useEffect(() => 
-    {
+ 
+  const dispatch = useDispatch();
+  useEffect(() => {
     document.body.classList.add(`xl:overflow-y-hidden`);
-    
   }, []);
 
-function handleremove(cartitem:itemprop){
-  dispatch(removefromcart(cartitem.id));
-}
+  function handleremove(cartitem: itemprop) {
+    dispatch(removefromcart(cartitem.id));
+  }
 
-function inc(cartitem:itemprop){
-  dispatch(addtocart(cartitem));
-}
+  function inc(cartitem: itemprop) {
+    dispatch(addtocart(cartitem));
+  }
 
-function dec(cartitem:itemprop){
+  function dec(cartitem: itemprop) {
     dispatch(decrem(cartitem.id));
-}
+  }
 
-function handleclearall(){
+  function handleclearall() {
     dispatch(removeallincart());
-}
-
-
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -48,7 +52,10 @@ function handleclearall(){
         <h1 className="text-2xl font-bold text-center mt-20">Cart is empty</h1>
       ) : (
         <>
-          <button onClick={()=>handleclearall()}  className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 mt-4">
+          <button
+            onClick={() => handleclearall()}
+            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 mt-4"
+          >
             Clear All
           </button>
           <div className="overflow-x-auto mt-10 h-[50vh] border-gray-100 rounded-xl border-2">
@@ -81,39 +88,38 @@ function handleclearall(){
                     </td>
                     <td className="px-4 py-2 border-b text-center">
                       <div className="flex justify-center items-center space-x-2">
-                        <button onClick={()=>dec(item)}  className="px-2 py-1 bg-gray-200 rounded">
+                        <button
+                          onClick={() => dec(item)}
+                          className="px-2 py-1 bg-gray-200 rounded"
+                        >
                           -
                         </button>
                         <span className="text-lg">{item.quantity}</span>
-                        <button onClick={()=>inc(item)} className="px-2 py-1 bg-gray-200 rounded">
+                        <button
+                          onClick={() => inc(item)}
+                          className="px-2 py-1 bg-gray-200 rounded"
+                        >
                           +
                         </button>
                       </div>
                     </td>
                     <td className="px-4 py-2 border-b text-center">
                       <p className="text-yellow-700 font-bold">
-                        ${item.price*item.quantity}
+                        ${item.price * item.quantity}
                       </p>
                     </td>
                     <td className="px-4 py-2 border-b text-center">
-                    <i onClick={()=>handleremove(item)} className="fa-solid fa-circle-xmark text-red-600"></i>
+                      <i
+                        onClick={() => handleremove(item)}
+                        className="fa-solid fa-circle-xmark text-red-600"
+                      ></i>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <div className="text-center mt-5">
-            <h2 className="text-2xl font-bold">Total: ${items.reduce((total, item) => total + item.price * item.quantity, 0)}</h2>
-
-            <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 transition duration-300 mt-3">
-              Checkout
-            </button>
-            <p onClick={() => navigate('/')}
-             className="mt-3 text-blue-500 cursor-pointer hover:underline">
-              Continue Shopping
-            </p>
-          </div>
+         <Total items={items}/>
         </>
       )}
     </div>
