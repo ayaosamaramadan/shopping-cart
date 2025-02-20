@@ -15,16 +15,11 @@ type itemprop = {
   price: number;
   image: string;
   quantity: number;
-
 };
-
-
 
 const Cart = () => {
   const items = useSelector((state: RootState) => state.cart.items);
-  // const items = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")!) : [];
-  // console.log(items);
- 
+
   const dispatch = useDispatch();
   useEffect(() => {
     document.body.classList.add(`xl:overflow-y-hidden`);
@@ -119,7 +114,7 @@ const Cart = () => {
               </tbody>
             </table>
           </div>
-         <Total items={items}/>
+          <Total items={items} />
         </>
       )}
     </div>

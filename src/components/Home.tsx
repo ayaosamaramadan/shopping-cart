@@ -1,10 +1,8 @@
 import { useFetchAllProductsQuery } from "../features/prodectapi";
 import Product from "./Product";
-// import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-    const { error, isLoading } = useFetchAllProductsQuery();
- 
+  const { error, isLoading } = useFetchAllProductsQuery();
 
   return (
     <>
@@ -17,7 +15,7 @@ const Home = () => {
       ) : (
         <div className="flex flex-col items-center justify-center mt-14 ml-10 mr-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
-           <Product/>
+            <Product />
           </div>
         </div>
       )}
