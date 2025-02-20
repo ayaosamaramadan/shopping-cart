@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../main";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { removefromcart } from "../features/cartSlice";
+import { addtocart, removefromcart ,decrem} from "../features/cartSlice";
 
 type itemprop = {
   id: number;
@@ -26,6 +26,14 @@ const Cart = () => {
 
 function handleremove(cartitem:itemprop){
   dispatch(removefromcart(cartitem.id));
+}
+
+function inc(cartitem:itemprop){
+  dispatch(addtocart(cartitem));
+}
+
+function dec(cartitem:itemprop){
+    dispatch(decrem(cartitem.id));
 }
 
 
@@ -69,11 +77,11 @@ function handleremove(cartitem:itemprop){
                     </td>
                     <td className="px-4 py-2 border-b text-center">
                       <div className="flex justify-center items-center space-x-2">
-                        <button className="px-2 py-1 bg-gray-200 rounded">
+                        <button onClick={()=>dec(item)}  className="px-2 py-1 bg-gray-200 rounded">
                           -
                         </button>
                         <span className="text-lg">{item.quantity}</span>
-                        <button className="px-2 py-1 bg-gray-200 rounded">
+                        <button onClick={()=>inc(item)} className="px-2 py-1 bg-gray-200 rounded">
                           +
                         </button>
                       </div>
