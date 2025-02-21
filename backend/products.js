@@ -1,4 +1,4 @@
-const products = [
+ const products = [
     {
         id: 1,
         name: 'Disney Princess: Royal Spring',
@@ -31,4 +31,5 @@ const products = [
     },
 ];
 
-export { products };
+// export { products };
+module.exports = products;

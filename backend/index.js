@@ -1,8 +1,9 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-// import compression from 'compression';
-import { products } from './products';
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+// const compression = require('compression');
+const products = require('./products');
+
 const app = express();
 
 dotenv.config();
