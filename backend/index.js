@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 // const compression = require('compression');
 const products = require('./products');
 
+const rejectRouter = require('./routes/rej');
+
 const app = express();
 
 dotenv.config();
@@ -12,6 +14,8 @@ dotenv.config();
 // app.use(compression());
 app.use(express.json());
 app.use(cors());
+
+app.use('/api/reject', rejectRouter);
 
 app.get('/product', (req, res) => {
   res.send(products);
