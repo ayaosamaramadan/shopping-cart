@@ -1,10 +1,11 @@
 const bcrypt = require('bcrypt');
-const joi=require('joi');
+const joi = require('joi');
 const express = require('express');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User'); 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-
     const schema = joi.object({
         name: joi.string().min(6).max(255).required(),
         email: joi.string().min(6).max(200).required().email(),
@@ -20,8 +21,7 @@ router.post('/', async (req, res) => {
     let user = await User.findOne({ email: req.body.email });
 
     if (user) {
-  return res.status(400).send('Email already exists');
-
+        return res.status(400).send('Email already exists');
     }
 
     user = new User({
@@ -31,7 +31,6 @@ router.post('/', async (req, res) => {
     });
 
     const salt = await bcrypt.genSalt(10);
-
     user.password = await bcrypt.hash(user.password, salt);
 
     user = await user.save();
@@ -41,5 +40,9 @@ router.post('/', async (req, res) => {
     res.send(token);
 });
 
+function generateToken(user) {
+    const secret = process.env.JWT_SECRET;
+    return jwt.sign({ _id: user._id, name: user.name, email: user.email }, secret, { expiresIn: '1h' });
+}
 
 module.exports = router;

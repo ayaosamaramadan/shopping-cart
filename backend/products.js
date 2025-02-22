@@ -32,4 +32,5 @@
 ];
 
 // export { products };
+
 module.exports = products;

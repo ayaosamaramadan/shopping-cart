@@ -2,20 +2,19 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-// const compression = require('compression');
 const products = require('./products');
-
-const rejectRouter = require('./routes/rej');
+const register = require('./routes/register');
+const login = require('./routes/login');
 
 const app = express();
 
 dotenv.config();
 
-// app.use(compression());
 app.use(express.json());
 app.use(cors());
 
-app.use('/api/reject', rejectRouter);
+app.use('/api/register', register);
+app.use('/api/login', login);
 
 app.get('/product', (req, res) => {
   res.send(products);
@@ -24,13 +23,12 @@ app.get('/product', (req, res) => {
 const uri = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
 mongoose.connect(uri)
   .then(() => {
     console.log('Connected to MongoDB');
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
   })
   .catch((error) => {
     console.log('Error connecting to MongoDB:', error.message);
