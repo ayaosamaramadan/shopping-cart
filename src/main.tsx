@@ -8,10 +8,12 @@ import theproduct from "./features/productSlice";
 import { fetchedata } from "./features/productSlice";
 import addtocart from "./features/cartSlice";
 import { productApi } from "./features/prodectapi";
+import author from "./features/autho";
 const store = configureStore({
   reducer: {
     theproduct: theproduct,
     cart : addtocart,
+    auth: author,
     [productApi.reducerPath]: productApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {
@@ -31,3 +33,4 @@ createRoot(document.getElementById("root")!).render(
 );
 
    export type RootState = ReturnType<typeof store.getState>;
+   export type AppDispatch = typeof store.dispatch;

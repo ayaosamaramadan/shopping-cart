@@ -1,14 +1,19 @@
 import { addtocart } from "../features/cartSlice";
 import { useFetchAllProductsQuery } from "../features/prodectapi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Product as ProductType } from "../types/product";
 import {useNavigate} from "react-router";
+import { RootState } from "../main";
 
 
 const Product = () => {
+  const auth = useSelector((state: RootState) => state.auth);
+
+  console.log(auth);
   const { data } = useFetchAllProductsQuery();
   const dispatch = useDispatch();
   const nav =useNavigate();
+
 
   const handleAddToCart = (product: ProductType) => {
     const cartItem = { ...product, quantity: 1 };

@@ -3,7 +3,7 @@ import Product from "./Product";
 
 const Home = () => {
   const { error, isLoading } = useFetchAllProductsQuery();
-
+  
   return (
     <>
       {isLoading ? (
