@@ -1,4 +1,4 @@
-To open project , clone the repo and install dependencies:
+<!-- To open project , clone the repo and install dependencies:
 
    ```bash
    git clone https://github.com/ayaosamaramadan/shopping-cart
@@ -19,4 +19,4 @@ To fetch backend API ,run:
 cd backend
 npm i nodemon cors express
 npm run start
-```
+``` -->
