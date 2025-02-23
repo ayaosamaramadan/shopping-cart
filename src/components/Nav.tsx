@@ -5,41 +5,43 @@ import { Link } from "react-router";
 import { RootState } from "../main";
 
 const Nav = () => {
-// const [cartItemCount, setCartItemCount] = useState(0);
-
-  // useEffect(() => {
-  //   const data = localStorage.getItem("cart");
-  //   if (data) {
-  //     const cartItems = JSON.parse(data);
-  //     setCartItemCount(cartItems.length);
-  //   }
-  // }, []);
-
-// const [cartItemCount, setCartItemCount] = useState(0);
-
-  // useEffect(() => {
-  //   const data = localStorage.getItem("cart");
-  //   if (data) {
-  //     const cartItems = JSON.parse(data);
-  //     setCartItemCount(cartItems.length);
-  //   }
-  // }, []);
-
   const items = useSelector((state: RootState) => state.cart.items);
- const cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
+  const cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
 
+  const auth = useSelector((state: RootState) => state.auth);
   return (
     <>
-      <nav className="flex bg-gray-200 p-4 justify-between items-center shadow-md">
-        <Link to="/" className="text-xl font-bold text-gray-800 hover:text-red-900">
+      <nav className="flex bg-gray-300 p-4 justify-between items-center shadow-md">
+        <Link
+          to="/"
+          className="text-2xl font-bold text-white hover:text-red-500"
+        >
           <h1>SHOPPING</h1>
         </Link>
-        <Link to="/cart" className="text-gray-800 hover:text-red-900 pr-4">
-          <div className="flex items-center relative">
+
+        <div className="flex items-center space-x-8 mr-5">
+          {auth._id ? (
+            <Link to="/logout" className="text-white hover:text-red-500">
+              Log out
+            </Link>
+          ) : (
+            <>
+              <Link to="/login" className="text-white hover:text-red-500">
+                Log in
+              </Link>
+              <Link to="/register" className="text-white hover:text-red-500">
+                Sign up
+              </Link>
+            </>
+          )}
+
+          <Link to="/cart" className="text-white hover:text-red-500 relative">
             <i className="fa-solid fa-bag-shopping text-2xl"></i>
-            <p className="bg-red-500 text-white p-1 rounded-full w-5 h-5 flex items-center justify-center absolute top-4 right-[-0.8rem] text-[0.8rem] pb-[0.4rem]">{cartItemCount}</p>
-          </div>
-        </Link>
+            <span className="bg-red-500 text-white p-1 rounded-full w-5 h-5 flex items-center justify-center absolute top-0 right-[-0.8rem] text-[0.8rem] pb-[0.4rem]">
+              {cartItemCount}
+            </span>
+          </Link>
+        </div>
       </nav>
     </>
   );

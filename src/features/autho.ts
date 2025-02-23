@@ -19,6 +19,7 @@ interface AuthState {
   userloading: boolean;
 }
 
+
 const initialState: AuthState = {
   token: localStorage.getItem("token"),
   name: "",
@@ -52,6 +53,7 @@ export const registeruser = createAsyncThunk(
   }
 );
 
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -67,6 +69,7 @@ const authSlice = createSlice({
       state.name = action.payload.name;
       state.email = action.payload.email;
       state._id = action.payload._id;
+      
     });
     builder.addCase(registeruser.rejected, (state, action) => {
       state.userloading = false;
