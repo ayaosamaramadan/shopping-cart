@@ -76,7 +76,21 @@ const authSlice = createSlice({
         };
       }
     },
-   
+    logoutUser: (state) => {
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        token: "",
+        name: "",
+        email: "",
+        _id: "",
+        userLoaded: false,
+        registerStatus: "",
+        registerError: "",
+        loginStatus: "",
+        loginError: "",
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.pending, (state) => {
@@ -84,7 +98,8 @@ const authSlice = createSlice({
     });
     builder.addCase(registerUser.fulfilled, (state, action) => {
       if (action.payload) {
-        const user: any = jwt_decode(action.payload.token); // استخدم الاستيراد المسمى الصحيح
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const user: any = jwtDecode(action.payload.token);
         return {
           ...state,
           token: action.payload.token,
