@@ -8,7 +8,7 @@ import theproduct from "./features/productSlice";
 import { fetchedata } from "./features/productSlice";
 import addtocart from "./features/cartSlice";
 import { productApi } from "./features/prodectapi";
-import author from "./features/autho";
+import author, { loadUser } from "./features/autho";
 const store = configureStore({
   reducer: {
     theproduct: theproduct,
@@ -23,6 +23,7 @@ const store = configureStore({
 );
 
 store.dispatch(fetchedata());
+store.dispatch(loadUser(null));
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

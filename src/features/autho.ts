@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { jwtDecode } from 'jwt-decode'
+import { jwtDecode } from "jwt-decode";
 interface RegisterValues {
   name: string;
   email: string;
@@ -56,15 +56,35 @@ export const registerUser = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    loadUser: (state) => {
+      const token = state.token;
+      if (token) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const user: any = jwtDecode(token);
+        return {
+          ...state,
+          name: user.name,
+          email: user.email,
+          _id: user._id,
+          userLoaded: true,
+        };
+      } else {
+        return {
+          ...state,
+          userLoaded: true,
+        };
+      }
+    },
+   
+  },
   extraReducers: (builder) => {
     builder.addCase(registerUser.pending, (state) => {
       return { ...state, registerStatus: "pending" };
     });
     builder.addCase(registerUser.fulfilled, (state, action) => {
       if (action.payload) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const user: any = jwtDecode(action.payload.token); // استخدم الاستيراد المسمى الصحيح
+        const user: any = jwt_decode(action.payload.token); // استخدم الاستيراد المسمى الصحيح
         return {
           ...state,
           token: action.payload.token,
@@ -84,5 +104,7 @@ const authSlice = createSlice({
     });
   },
 });
+
+export const { loadUser } = authSlice.actions;
 
 export default authSlice.reducer;
